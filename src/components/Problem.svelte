@@ -1,39 +1,44 @@
 <script>
-    export let problem
-    export let i
-    export let selected = []
-    
-    let current = 1
+	export let selected = [];
+	export let problem;
+	export let i;
 
-    $: selected[i] = current - 1
+	let current = 1;
+
+	$: selected[i] = current - 1;
 </script>
 
 <div class="problem">
-<h1>{problem.question}</h1>
+	<h1>{@html problem.question}</h1>
 
-{#each problem.answers as answer, j}
-    <label>
-        <input
-            type=radio
-            value={j + 1}
-            bind:group={current}
-        />
-        {answer}
-    </label>
-{/each}
+	{#each problem.answers as answer, j}
+		<label>
+			<input type="radio" value={j + 1} bind:group={current} />
+			{answer}
+		</label>
+	{/each}
 </div>
 
 <style>
-    h1 {
-        font-size: 0.9rem;
-    }
-.problem {
-     display: flex;
-     flex-direction: column;
-     max-width: 600px;
-     margin: 25px auto;
-     border: 5px solid rgb(153, 196, 224);
-     padding: 10px;
-    text-align: center;
-}
+	h1 {
+		font-size: 0.9rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.problem {
+		display: flex;
+		flex-direction: column;
+		max-width: 600px;
+		margin: 25px auto;
+		border: 5px solid rgb(153, 196, 224);
+		padding: 10px;
+		text-align: center;
+	}
+	:global(pre),
+	:global(code) {
+		width: max-content;
+		margin: auto;
+		font-size: 14px;
+	}
 </style>
